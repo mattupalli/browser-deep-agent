@@ -5,6 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "browser-use>=0.9.1",
     "bs4>=0.0.2",
     "langchain>=1.0.2",
     "langchain-community>=0.4",

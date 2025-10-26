@@ -10,7 +10,7 @@ load_dotenv()
 GROQ_API = os.getenv("GROQ_API")
 
 async def create_langchain_docs_agent():
-    # Connect to LangChain docs MCP server
+
     client = MultiServerMCPClient({
         "docs": {
             "transport": "streamable_http",
@@ -18,10 +18,8 @@ async def create_langchain_docs_agent():
         }
     })
 
-    # Get tools from MCP server
     tools = await client.get_tools()
 
-    # Initialize LLM
     llm = ChatGroq(
         model="meta-llama/llama-4-scout-17b-16e-instruct",
         api_key=GROQ_API,
@@ -29,7 +27,6 @@ async def create_langchain_docs_agent():
         temperature=0
     )
 
-    # Create the agent
     agent = create_agent(
         model=llm,
         tools=tools,

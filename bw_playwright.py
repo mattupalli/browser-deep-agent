@@ -8,21 +8,17 @@ from langchain_mcp_adapters.tools import load_mcp_tools
 from langchain.agents import create_agent
 from langchain_groq import ChatGroq
 
-# suppress harmless async stream warnings
 warnings.filterwarnings("ignore", category=ResourceWarning)
 
 load_dotenv()
 
-# ✅ helper: safe invoke with retries and MCP wait
 async def safe_invoke(agent, session, task, retries=2):
     for attempt in range(retries):
         try:
             result = await agent.ainvoke(task)
 
-            # optional: wait a bit for MCP stream to flush
             await asyncio.sleep(0.5)
 
-            # after any action, wait to stabilize DOM
             try:
                 await session.call_tool("browser_wait_for", {"time": 5})
             except Exception:
@@ -33,7 +29,7 @@ async def safe_invoke(agent, session, task, retries=2):
         except Exception as e:
             msg = str(e)
             if "ClosedResourceError" in msg:
-                # harmless network close; ignore
+                
                 print("Ignored stream close error.")
                 return result
             print(f"Attempt {attempt+1} failed: {e}")

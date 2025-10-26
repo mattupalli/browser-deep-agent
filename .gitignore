@@ -1,0 +1,67 @@
+# Python bytecode / caches
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.pyc
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Packaging / build
+build/
+dist/
+*.egg-info/
+.eggs/
+wheels/
+
+# Local config / secrets
+.env
+.env.*
+.env.local
+*.env
+
+# LangGraph / local stores
+.langgraph_api/
+store.pckl
+store.vectors.pckl
+*.pckl
+
+# Linter / editor caches
+.ruff_cache/
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Test / coverage / caches
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/
+.cache/
+
+# Node / Playwright
+node_modules/
+playwright/.cache/
+playwright/.local-browsers/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Local Python version file
+.python-version
